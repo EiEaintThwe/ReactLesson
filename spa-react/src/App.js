@@ -6,9 +6,7 @@ import PostsList from './assets/components/PostsList';
 import Modal from './assets/components/Modal';
 
 function App() {
-
-
-
+  let [showModal, setShowModal] = useState(false);
   let [posts, setPosts] = useState([
     {
       id: 1,
@@ -28,7 +26,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar setShowModal = {setShowModal} />
       <PostsList posts = {posts} />
       {/* <Modal>
             <h1>Zoom class is Available</h1>
@@ -36,10 +34,11 @@ function App() {
       
     </Modal> */}
 
-    <Modal>
+    { showModal && <Modal>
       <h1>Terms & Conditions</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </Modal>
+      <button onClick={() => setShowModal(false)}>Close</button>
+    </Modal>}
     </>
 
   );
