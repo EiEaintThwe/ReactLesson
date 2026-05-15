@@ -34,7 +34,7 @@ function App() {
       
     </Modal> */}
 
-    { showModal && <Modal>
+    { showModal && <Modal danger>
       <h1>Terms & Conditions</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <button onClick={() => setShowModal(false)}>Close</button>
