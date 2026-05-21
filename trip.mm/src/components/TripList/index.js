@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState, useEffect } from 'react';
 
 export default function Index() {
     let [trips, setTrips] = useState([]);
     let [url, setUrl] = useState('http://localhost:3001/trips');
 
-    useEffect(() => {
+    let fetchTrips = useCallback(() => {
         fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            setTrips(data);
-           
+            .then(res => res.json())
+            .then(data => {
+                setTrips(data);
+            })
+    }, [url]);
 
-        })},[url]);
-         console.log(trips);
+    useEffect(() => {
+        fetchTrips();
+    }, [fetchTrips]);
+    console.log(trips);
 
     return (
         <div>
@@ -23,12 +26,12 @@ export default function Index() {
             <button onClick={() => setUrl('http://localhost:3001/trips?location=Myanmar')}>Trips in Myanmar</button>
 
             <ul>
-               {trips.map(trip => (
-                 <li key={trip.id}>
-                    <h3>{trip.name}</h3>
-                    <p>price - {trip.price} mmk</p>
-                </li>
-               ))}
+                {trips.map(trip => (
+                    <li key={trip.id}>
+                        <h3>{trip.name}</h3>
+                        <p>price - {trip.price} mmk</p>
+                    </li>
+                ))}
             </ul>
         </div>
     )
