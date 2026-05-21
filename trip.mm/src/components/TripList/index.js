@@ -3,9 +3,10 @@ import { useState } from 'react';
 import './index.css';
 import useFetch from '../../hooks/useFetch';
 
+
 export default function Index() {
     let [url, setUrl] = useState('http://localhost:3001/trips');
-    let { data : trips , loading, error } = useFetch(url);
+    let { data : trips , loading, error } = useFetch(url , { type: 'Get'});
 
 
     return (
